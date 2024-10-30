@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Flutter Network Repository"),
+              title: const Text("Network Repository Demo"),
               centerTitle: true,
               actions: [
                 if (!state.isLoading)
