@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../di/service_locator.dart';
 import 'home/home_screen.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
+final appContext = navigatorKey.currentState!.context;
 
 class FlutterNetworkRespository extends StatelessWidget {
   const FlutterNetworkRespository({super.key});
@@ -9,9 +11,8 @@ class FlutterNetworkRespository extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(
-        homeCubit: getIt(),
-      ),
+      navigatorKey: navigatorKey,
+      home: const HomeScreen(),
     );
   }
 }

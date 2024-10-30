@@ -20,10 +20,11 @@ class DioClient {
   final dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
-      contentType: 'application/json',
-      connectTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
-      sendTimeout: const Duration(seconds: 20),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 20),
     ),
   );
 
@@ -80,7 +81,7 @@ class DioClient {
         case DioExceptionType.connectionTimeout:
           message = "Connection timed out";
         case DioExceptionType.unknown:
-          message = "Connection timeout with API server";
+          message = "A Server Error Occured!";
           break;
         case DioExceptionType.receiveTimeout:
           message = "Receive timeout in connection with API server";

@@ -1,3 +1,4 @@
+import 'package:flutter_network_repository/domain/di/domain_layer_injection.dart';
 import 'package:flutter_network_repository/presentation/di/presentation_layer_injection.dart';
 import 'package:get_it/get_it.dart';
 import '../data/di/data_layer_injection.dart';
@@ -11,6 +12,7 @@ class ServiceLocator {
     await ServiceInjection.configureServiceLayerInjction();
     await DataLayerInjection.configureDataLayerInjction();
     await NetworkLayerInjection.configureNetworkLayerInjection();
+    await DomainLayerInjection.configureDataLayerInjection();
     await PresentationLayerInjection.configurePresentationLayerInjection();
   }
 }

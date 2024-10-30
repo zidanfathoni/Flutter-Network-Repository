@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_network_repository/domain/repositories/post_repository.dart';
+import 'package:flutter_network_repository/helpers/utils.dart';
 import 'package:flutter_network_repository/presentation/home/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -11,7 +12,8 @@ class HomeCubit extends Cubit<HomeState> {
     postRepository.getPosts("/posts").then(
           (response) => response.fold(
             (error) {
-              emit(state.copyWith(isLoading: true));
+              emit(state.copyWith(isLoading: false));
+              showToast(error.error);
             },
             (posts) {
               emit(state.copyWith(isLoading: false, posts: posts));

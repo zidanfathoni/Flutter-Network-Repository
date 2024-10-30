@@ -7,18 +7,16 @@ class NetworkInterceptor extends Interceptor {
   final LocalStorageRepository localStorageRepository;
   NetworkInterceptor(this.localStorageRepository);
 
-  String _tokenValue = "";
+  // final String _tokenValue = "";
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     var body = response.data;
     if (body != null) {
-      if (body["data"] != null) {
-        if (body["data"]['token'] != null) {
-          _tokenValue = body['data']['token'];
-          localStorageRepository.setValue(tokenKey, _tokenValue);
-        }
-      }
+      // if (body["token"] != null) {
+      //   _tokenValue = body['token'];
+      //   localStorageRepository.setValue(tokenKey, _tokenValue);
+      // }
     }
     return handler.next(response);
   }
@@ -29,7 +27,7 @@ class NetworkInterceptor extends Interceptor {
           (result) => result.fold(
             (error) {},
             (token) {
-              options.headers['Authorization'] = 'Bearer $token';
+              // options.headers['Authorization'] = 'Bearer $token';
             },
           ),
         );

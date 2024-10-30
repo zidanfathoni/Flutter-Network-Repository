@@ -6,7 +6,7 @@ import '../service/network_monitor.dart';
 import 'dio/dio_client.dart';
 import 'network_response.dart';
 
-class NetworkRepository {
+class NetworkRepository implements Exception {
   final DioClient dioClient;
   final NetworkMonitor networkMonitor;
   NetworkRepository(this.dioClient, this.networkMonitor);
@@ -136,17 +136,9 @@ class NetworkRepository {
     final body = response.data;
     if (response.statusCode == 200 || response.statusCode == 201) {
       return NetworkResponse(
-        code: body["code"] ?? response.statusCode,
-        message: body["message"] ?? "",
-        success: body["success"] ?? "true",
         data: body,
       );
     }
-    throw NetworkResponse(
-      code: body["code"] ?? response.statusCode,
-      message: body["message"] ?? "Unknown error occurred",
-      success: body["success"] ?? "false",
-      data: body["data"],
-    );
+    throw NetworkResponse(failed: true);
   }
 }
