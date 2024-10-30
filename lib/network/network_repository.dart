@@ -6,7 +6,7 @@ import '../service/network_monitor.dart';
 import 'dio/dio_client.dart';
 import 'network_response.dart';
 
-class NetworkRepository implements Exception {
+class NetworkRepository {
   final DioClient dioClient;
   final NetworkMonitor networkMonitor;
   NetworkRepository(this.dioClient, this.networkMonitor);
